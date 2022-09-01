@@ -90,7 +90,6 @@ while (user == 1)
     {
         Console.WriteLine("Number - " + number);
         string tempNumber = Convert.ToString(number);
-        Console.WriteLine(tempNumber);
         int result = 0;
 
         for (int count = 0; count < tempNumber.Length; count++)
@@ -118,14 +117,13 @@ while (user == 1)
     void array8numbers()
     {
         int[] array = new int[8];
-        Console.Write("[");
+       
         for (int count = 0; count < 8; count++)
         {
             array[count] = new Random().Next(1, 50);
+            Console.WriteLine($"{count+1}) {array[count]}");
         }
-        Console.Write(string.Join(", ", array));
-        Console.WriteLine("]");
-
+        Console.WriteLine("Array - [" + string.Join(", ", array) + "]");
     }
 
     Console.WriteLine("Press 1 to repeat task or press 0 for next task");
