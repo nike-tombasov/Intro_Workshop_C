@@ -29,9 +29,9 @@ int user = 0;
 
 //Task 54
 Console.Clear();
-// user = 1;
+user = 1;
 
-Console.WriteLine("Task 54. Sort every matrix row in descending order");
+Console.WriteLine("Task 54. Sort every random matrix row in descending order");
 Console.WriteLine();
 
 while (user == 1)
@@ -65,9 +65,9 @@ while (user == 1)
 
 //Task 56
 Console.Clear();
-// user = 1;
+user = 1;
 
-Console.WriteLine("Task 56. Return which matrix row has minimum sum of numbers");
+Console.WriteLine("Task 56. Return which random matrix row has minimum sum of numbers");
 Console.WriteLine();
 
 while (user == 1)
@@ -94,7 +94,7 @@ while (user == 1)
     }
     
     Console.WriteLine();
-    Console.WriteLine("Minimal sum row - " + (minSumIndex + 1));
+    Console.WriteLine("Minimal sum row - row #" + (minSumIndex + 1));
 
     Console.WriteLine();
     Console.Write("Press 1 to repeat task or press 0 for next task");
@@ -103,7 +103,7 @@ while (user == 1)
 
 //Task 58
 Console.Clear();
-// user = 1;
+user = 1;
 
 Console.WriteLine("Task 58. Return matrix from multiplyig of two random matrix");
 Console.WriteLine();
@@ -113,7 +113,7 @@ while (user == 1)
     int [,] matrix58A = newRandomMatrix(2,2,0,10);
     printMatrix(matrix58A);
     Console.WriteLine();
-    int [,] matrix58B = newRandomMatrix(2,3,0,10);
+    int [,] matrix58B = newRandomMatrix(2,2,0,10);
     printMatrix(matrix58B);
     Console.WriteLine();
 
@@ -143,10 +143,10 @@ while (user == 1)
 
 //Task 60
 Console.Clear();
-// user = 1;
+user = 1;
 
-Console.WriteLine( "Task 60. Create 3D array and return arrays line by line " + 
-"adding index of 3D array");
+Console.WriteLine( "Task 60. Create 3D array and return arrays of elemens " + 
+"line by line adding index of 3D array");
 Console.WriteLine();
 
 while (user == 1)
@@ -180,70 +180,76 @@ Console.WriteLine();
 
 while (user == 1)
 {
-    int [,] matrix62 = new int[4, 4];
-    int numbers = 1;
-    int x = matrix62.GetLength(0);
-    int y = matrix62.GetLength(1);
-    // int [] array62 = new int[matrix62.GetLength(0) * matrix62.GetLength(1)];
-    
-    // //Filling temp array with all needed numbers
-    // for (int i = 0; i < array62.Length; i++) 
-    // {
-    //     array62[i] = i + 1;
-    // }
+    Console.WriteLine("Insert quantity of rows/columns for square matrix: ");
+    int x = Convert.ToInt32(Console.ReadLine());
+    if (x > 1)
+    {
+        int y = x;
+        int [,] matrix62 = new int[x, y];
+        int numbers = 1;
 
-    for (int i = 0; i < y; i++)
-    {
-        matrix62[0, i] = numbers;
-        numbers++;
+        for (int i = 0; i < y; i++)
+        {
+            matrix62[0, i] = numbers;
+            numbers++;
+        }
+        for (int i = 1; i < x; i++)
+        {
+            matrix62[i, y-1] = numbers;
+            numbers++;
+        }
+        for (int i = y - 2; i >= 0; i--)
+        {
+            matrix62[x-1,i] = numbers;
+            numbers++;
+        }
+        for (int i = x - 2; i > 0; i--)
+        {
+            matrix62[i,0] = numbers;
+            numbers++; 
+        }
+        
+        int x2 = 1;
+        int y2 = 1;
+        while(matrix62[x2,y2] == 0)
+        {
+            while(matrix62[x2,y2] == 0)
+            {
+                matrix62[x2,y2] = numbers;
+                numbers++;
+                if (matrix62[x2,y2+1] == 0) y2++;
+            }
+            x2 += 1;
+            while(matrix62[x2, y2] == 0)
+            {
+                matrix62[x2,y2] = numbers;
+                numbers++;
+                if (matrix62[x2+1,y2] == 0) x2++;
+            }
+            y2 -= 1;
+            while(matrix62[x2, y2] == 0)
+            {
+                matrix62[x2,y2] = numbers;
+                numbers++;
+                if (matrix62[x2,y2 - 1] == 0) y2--;
+            }
+            x2 -= 1;
+            while(matrix62[x2,y2] == 0)
+            {
+                matrix62[x2, y2] = numbers;
+                numbers++;
+                if (matrix62[x2 - 1,y2] == 0) x2--;
+            }
+            y2 += 1;
+        }    
+        printMatrix(matrix62);
     }
-    for (int i = 1; i < x; i++)
-    {
-        matrix62[i, y-1] = numbers;
-        numbers++;
-    }
-    for (int i = y - 2; i >= 0; i--)
-    {
-        matrix62[x-1,i] = numbers;
-        numbers++;
-    }
-    for (int i = x - 2; i > 0; i--)
-    {
-        matrix62[i,0] = numbers;
-        numbers++; 
-    }
-    
-    int x2 = 1;
-    int y2 = 1;
-    while(matrix62[x2,y2+1] == 0)
-    {
-        matrix62[x2,y2] = numbers;
-        numbers++;
-        y2++;
-    }
-    while(matrix62[x2+1, y2] == 0)
-    {
-        matrix62[x2,y2] = numbers;
-        numbers++;
-        x2++;
-    }
-    while(matrix62[x2, y2 - 1] == 0)
-    {
-        matrix62[x2,y2] = numbers;
-        numbers++;
-        y2--;
-    }
-    while(matrix62[x2-1,y2] == 0)
-    {
-        matrix62[x2, y2] = numbers;
-        numbers++;
-        x2--;
-    }
-
-    printMatrix(matrix62);
-
+    else Console.WriteLine("Can't creat spiral matrix. Use more rows/columns.");
 
     Console.WriteLine();
     Console.Write("Press 1 to repeat task or press 0 for next task");
     user = Convert.ToInt32(Console.ReadLine());
 }
+
+Console.Clear();
+Console.WriteLine("No tasks. Homework is over");
