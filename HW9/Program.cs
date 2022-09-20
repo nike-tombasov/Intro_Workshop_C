@@ -68,6 +68,12 @@ Console.WriteLine();
 
 double fAkkerman(double m, double n)
 {
+    if (m < 0 || n < 0) 
+    {
+        Console.WriteLine();
+        Console.WriteLine("Use only positive numbers. Try again.");
+        Console.WriteLine();
+    }
     if (m == 0) return n + 1;
     if (m > 0 && n == 0) return fAkkerman(m - 1, 1);
     if (m > 0 && n > 0) return fAkkerman(m - 1, fAkkerman(m, n - 1));
